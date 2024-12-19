@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id          String    @id @default(uuid())
+  title       String
+  address     String
+  description String
+  lat         Float
+  lng         Float
+  images      String[]
+  type        String
+  status      String
+  isActive    Boolean   @default(true)
+  price       Float
+  area        Float
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  owner       Owner     @relation(fields: [ownerId], references: [id])
+  ownerId     String
+}
+
+model Owner {
+  id       String    @id @default(uuid())
+  name     String
+  contact  String
+  property Property[]
+}
