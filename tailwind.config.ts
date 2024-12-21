@@ -1,13 +1,23 @@
 import type { Config } from "tailwindcss";
-
-export default {
+const withMT = require("@material-tailwind/react/utils/withMT");
+ 
+module.exports = withMT({
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/properties/**/*.{js,ts,jsx,tsx,mdx}",
+    // "/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    // "/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1430px",
+      "2xl": "1536px",
+    },
     extend: {
       colors: {
         background: "var(--background)",
@@ -21,8 +31,7 @@ export default {
       },
       fontFamily: {
         lato: ["Lato", "sans-serif"],
-      }
+      },
     },
   },
-  plugins: [],
-} satisfies Config;
+}) satisfies Config;

@@ -14,7 +14,7 @@ export const SelectInput = () => {
         <div className="relative">
           <Select
             className={clsx(
-              'block w-full appearance-none rounded-lg border-none bg-ks-white py-1.5 px-3 text-sm/6 text-ks-grey',
+              'block w-full appearance-none rounded-lg border-2 border-ks-beige bg-ks-white py-1.5 px-3 text-sm/6 text-ks-grey',
               'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-ks-grey',
               '*:text-ks-grey'
             )}

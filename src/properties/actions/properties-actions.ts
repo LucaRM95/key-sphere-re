@@ -5,6 +5,18 @@ import { notificationService } from "@/shared/services/notificationService";
 import { Property } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
+export const getPropertyById = async (id: string) => {
+  try {
+    const property = await prisma.property.findFirst({ where: { id } });
+
+    return property;
+  } catch (error) {
+    return notificationService.error(
+      `Ocurrio un error al intentar cargar la propiedad ${id}.`
+    );
+  }
+};
+
 export const addProperty = async (property: Property): Promise<void> => {
   try {
     await prisma.property.create({ data: property });

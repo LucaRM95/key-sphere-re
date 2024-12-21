@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Map, Marker } from "react-map-gl";
 import { Property } from "@prisma/client";
@@ -19,7 +19,7 @@ export const Mapbox = ({ properties, mapbox_key }: MapboxProps) => {
         latitude: 39.8283,
         zoom: 4,
       }}
-      mapStyle="mapbox://styles/mapbox/streets-v12"
+      mapStyle="mapbox://styles/mapbox/streets-v11"
     >
       {properties.map((prop: Property) => (
         <Marker

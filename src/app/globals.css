@@ -20,3 +20,36 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.scrollable-content::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: #512DA8; /* Scrollbar color */
+  border-radius: 4px; /* Rounded scrollbar edges */
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background-color: #f3f3ff; /* Scrollbar track color */
+}
+
+/* Hide the scrollbar */
+.scrollable-content {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  display: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fcf8f1 !important; /* Change this to your desired color */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #b6b6b6 !important; /* Optional: Hover color */
+}

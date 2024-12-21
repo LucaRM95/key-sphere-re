@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { MobileMenu } from "./mobile/MobileMenu";
@@ -11,33 +9,38 @@ import {
   IoLogOutOutline,
   IoNotificationsOutline,
   IoPersonOutline,
-  IoSearchOutline,
 } from "react-icons/io5";
 
 const menuItems = [
-  { icon: <IoHomeOutline size={25} />, path: "/properties", name: "Dashboard" },
+  { icon: <IoHomeOutline size={25} />, path: "/properties", name: "Properties" },
   {
     icon: <IoLayersOutline size={25} />,
-    path: "/properties",
+    path: "/listings",
     name: "Listings",
   },
   {
     icon: <IoNotificationsOutline size={25} />,
-    path: "/properties",
+    path: "/notifications",
     name: "Notifications",
   },
   {
     icon: <IoHeartOutline size={25} />,
-    path: "/properties",
+    path: "/favorites",
     name: "Favorites",
   },
-  { icon: <IoPersonOutline size={25} />, path: "/properties", name: "Account" },
-  { icon: <IoLogOutOutline size={25} />, path: "/properties", name: "Logout" },
+  { icon: <IoPersonOutline size={25} />, path: "/account", name: "Account" },
+  { icon: <IoLogOutOutline size={25} />, path: "/logout", name: "Logout" },
 ];
 
 export const Topbar = () => {
   return (
-    <div className="flex justify-between items-center w-full h-[60px] bg-ks-dark p-2 text-ks-white relative">
+    <div
+      className={`
+      flex justify-between lg:justify-around items-center 
+      w-full bg-ks-blue p-2 border-2 border-ks-beige text-ks-white relative z-20 
+      lg:rounded-lg lg:mt-5 lg:ms-5
+    `}
+    >
       <Link
         href="/properties"
         className="flex items-center gap-2 cursor-pointer"
@@ -48,9 +51,9 @@ export const Topbar = () => {
           width={48}
           height={48}
         />
-        <div className="bg-ks-white w-[1px] h-[50px] rounded-full"></div>
+        <div className="lg:hidden bg-ks-white w-[1px] h-[50px] rounded-full"></div>
         <div className="text-lg">
-          <span className="font-bold">Key Sphere</span>
+          <span className="font-bold lg:hidden">Key Sphere</span>
         </div>
       </Link>
 

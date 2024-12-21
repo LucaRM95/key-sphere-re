@@ -3,6 +3,7 @@
 import { MenuItem } from "@/properties/interfaces/menuItem.interface";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   IoClose,
@@ -15,12 +16,13 @@ interface Props {
 
 export const MobileMenu = ({ menuItems }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathName = usePathname();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <>
-      <button className="flex lg:hidden" onClick={toggleMenu}>
+      <button className="flex xl:hidden" onClick={toggleMenu}>
         {menuOpen ? (
           <IoClose className="text-ks-white" size={40} />
         ) : (
@@ -35,7 +37,7 @@ export const MobileMenu = ({ menuItems }: Props) => {
         onClick={() => setMenuOpen(false)}
       >
         <div
-          className={`w-full bg-ks-blue h-full p-8 flex flex-col gap-5 transform transition-transform duration-300 ${
+          className={`w-full bg-ks-blue h-full md:w-[40%] p-8 flex flex-col gap-5 transform transition-transform duration-300 ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -76,7 +78,10 @@ export const MobileMenu = ({ menuItems }: Props) => {
               <Link
                 key={item.name}
                 href={item.path}
-                className="flex items-center w-[200px] text-ks-white gap-10 hover:bg-ks-beige p-2 rounded-xl text-lg"
+                className={`
+                  flex items-center w-[200px] text-ks-white gap-10 hover:bg-ks-beige hover:transition-all hover:duration-200 p-2 rounded-xl text-lg
+                  ${ pathName === item.path ? "bg-ks-beige" : ""}
+                `}
                 onClick={toggleMenu}
               >
                 {item.icon}
