@@ -7,8 +7,6 @@ module.exports = withMT({
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/properties/**/*.{js,ts,jsx,tsx,mdx}",
-    // "/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
-    // "/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     screens: {

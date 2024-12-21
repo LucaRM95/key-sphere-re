@@ -26,8 +26,8 @@ body {
 }
 
 .scrollable-content::-webkit-scrollbar-thumb {
-  background-color: #512DA8; /* Scrollbar color */
-  border-radius: 4px; /* Rounded scrollbar edges */
+  background-color: #dca85e !important; /* Scrollbar color */
+  border-radius: 4px !important; /* Rounded scrollbar edges */
 }
 
 .scrollable-content::-webkit-scrollbar-track {
