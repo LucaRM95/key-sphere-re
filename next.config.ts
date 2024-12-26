@@ -9,7 +9,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "pbs.twimg.com"
+        hostname: "static.wikia.nocookie.net"
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com"
       },
     ]
   }

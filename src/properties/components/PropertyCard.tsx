@@ -10,13 +10,17 @@ import {
   IoPricetagOutline,
 } from "react-icons/io5";
 
+import { PropertiesActions } from '@/properties/index';
+
 interface Props {
   property: Property;
 }
 
-export const PropertyCard = ({ property }: Props) => {
+export const PropertyCard = async ({ property }: Props) => {
+  const user = await PropertiesActions.getUserById(property.userId);
+
   return (
-    <div className="bg-white h-[550px] rounded-xl">
+    <div className="bg-ks-beige  h-[550px] rounded">
       <div className="relative w-full h-[50%]">
         <Link href={`/properties/${property.id}`}>
           <Image
@@ -24,11 +28,11 @@ export const PropertyCard = ({ property }: Props) => {
             alt={property.title}
             layout="fill"
             objectFit="cover"
-            className="rounded-t-lg"
+            className="rounded-t"
             priority
           />
         </Link>
-        <div className="flex justify-center items-center gap-2 absolute top-2 left-2 bg-ks-white text-ks-grey text-xs font-bold px-3 py-1 rounded-full z-5">
+        <div className="flex justify-center items-center gap-2 absolute top-2 left-2 bg-ks-beige text-ks-dark text-xs font-bold px-3 py-1 rounded-full z-5">
           <div
             className={`${
               property.isActive ? "bg-green-500" : "bg-red-500"
@@ -37,23 +41,23 @@ export const PropertyCard = ({ property }: Props) => {
           <span>{property.isActive ? "Active" : "Inactive"}</span>
         </div>
         <div className="absolute bottom-2 right-2 flex space-x-2 z-5">
-          <button className="bg-ks-white p-2 rounded-full shadow hover:bg-gray-100">
+          <button className="bg-ks-dark p-2 rounded-full shadow">
             <FaShareAlt className="text-ks-beige" />
           </button>
-          <button className="bg-ks-white p-2 rounded-full shadow hover:bg-gray-100">
+          <button className="bg-ks-dark p-2 rounded-full shadow">
             <FaHeart className="text-ks-beige" />
           </button>
         </div>
       </div>
       <div className="flex flex-col justify-center h-[50%]">
-        <div className="flex justify-between text-ks-beige m-3">
+        <div className="flex justify-between text-ks-dark m-3">
           <div className="text-2xl">
-            <h4>{property.title}</h4>
+            <h4 className="font-semibold">{property.title}</h4>
             <span className="text-ks-grey text-[20px]">{property.address}</span>
           </div>
           <div className="text-[20px] text-end">
             <h6 className="text-ks-grey">Price</h6>
-            <span className="text-ks-beige text-[25px]">
+            <span className="text-ks-dark text-[25px] font-semibold">
               ${property.price.toLocaleString()}
             </span>
           </div>
@@ -72,15 +76,15 @@ export const PropertyCard = ({ property }: Props) => {
             <span>{property.status}</span>
           </div>
         </div>
-        <div className="flex justify-between m-3 bg-gray-200 rounded-xl text-ks-grey p-2">
+        <div className="flex justify-between m-3 bg-ks-dark rounded text-ks-white p-2">
           <div className="flex flex-col font-semibold text-[14px]">
             <h6>Owner name</h6>
-            <span className="text-ks-beige">Caroline Forbes</span>
+            <span className="text-ks-beige">{ user?.name ?? "No user" }</span>
           </div>
           <VerticalSeparator />
           <div className="flex flex-col font-semibold text-[14px]">
             <h6>Owner contact</h6>
-            <span className="text-ks-beige">CarolineForbes@mail.com</span>
+            <span className="text-ks-beige">{ user?.email ?? "No email" }</span>
           </div>
         </div>
       </div>

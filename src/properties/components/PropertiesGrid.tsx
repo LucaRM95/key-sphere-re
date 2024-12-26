@@ -18,13 +18,14 @@ export const PropertiesGrid = ({ properties }: Props) => {
               {"Unlock your new life".toUpperCase()}
             </span>
           </div>
-          <span className="text-2xl font-bold">Find your home</span>
+          <span className="text-ks-dark text-2xl font-bold">Find your home</span>
         </div>
         <KeySphereButton
+          path="/properties/new-property"
           icon={
             <IoAdd
               size={30}
-              className="text-ks-grey bg-ks-beige h-full rounded-tl-full rounded-bl-full p-2"
+              className="text-ks-dark bg-ks-beige h-full rounded-tl-full rounded-bl-full p-2"
             />
           }
           text="Add Property"

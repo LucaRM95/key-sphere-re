@@ -1,64 +1,47 @@
-import Image from "next/image";
+"use client"
+
 import Link from "next/link";
 import { MobileMenu } from "./mobile/MobileMenu";
 import { DesktopMenu } from "./desktop/DesktopMenu";
-import {
-  IoHeartOutline,
-  IoHomeOutline,
-  IoLayersOutline,
-  IoLogOutOutline,
-  IoNotificationsOutline,
-  IoPersonOutline,
-} from "react-icons/io5";
+import { MenuItem } from "../interfaces/menuItem.interface";
+import { usePathname } from "next/navigation";
+import { Session } from "next-auth";
 
-const menuItems = [
-  { icon: <IoHomeOutline size={25} />, path: "/properties", name: "Properties" },
-  {
-    icon: <IoLayersOutline size={25} />,
-    path: "/listings",
-    name: "Listings",
-  },
-  {
-    icon: <IoNotificationsOutline size={25} />,
-    path: "/notifications",
-    name: "Notifications",
-  },
-  {
-    icon: <IoHeartOutline size={25} />,
-    path: "/favorites",
-    name: "Favorites",
-  },
-  { icon: <IoPersonOutline size={25} />, path: "/account", name: "Account" },
-  { icon: <IoLogOutOutline size={25} />, path: "/logout", name: "Logout" },
-];
+interface Props {
+  menuItems: Array<MenuItem>;
+  withoutBg?: boolean;
+  session?: Session | null;
+}
 
-export const Topbar = () => {
+export const Topbar = ({ menuItems, withoutBg = false, session }: Props) => {
+  const pathname = usePathname(); 
+
   return (
     <div
       className={`
-      flex justify-between lg:justify-around items-center 
-      w-full bg-ks-blue p-2 border-2 border-ks-beige text-ks-white relative z-20 
-      lg:rounded-lg lg:mt-5 lg:ms-5
+      flex justify-between ${pathname === '/' ? "p-5" : "lg:justify-around lg:ms-5 lg:mt-5"} items-center 
+      w-full ${withoutBg ? "bg-transparent border-none" : "bg-ks-white"}  
+      p-2 border-2 text-ks-white relative z-20 lg:rounded-lg
     `}
     >
       <Link
         href="/properties"
-        className="flex items-center gap-2 cursor-pointer"
+        className="flex items-center justify-center gap-2 cursor-pointer h-[60px] w-[150px]"
       >
-        <Image
+        {/* <Image
           src="/images/key-sphere-logo3.png"
           alt="Key Sphere Logo"
-          width={48}
-          height={48}
-        />
-        <div className="lg:hidden bg-ks-white w-[1px] h-[50px] rounded-full"></div>
-        <div className="text-lg">
-          <span className="font-bold lg:hidden">Key Sphere</span>
+          width={40}
+          height={40}
+        /> */}
+        {/* <div className="lg:hidden bg-ks-white w-[1px] h-[50px] rounded-full"></div> */}
+        <div className={`text-lg ${pathname === '/' ? "text-ks-white" : "text-ks-dark"} w-full`}>
+          <span className="font-bold">K.S.</span>
         </div>
       </Link>
 
-      <DesktopMenu menuItems={menuItems} />
-      <MobileMenu menuItems={menuItems} />
+      <DesktopMenu menuItems={menuItems} session={session} />
+      <MobileMenu menuItems={menuItems} session={session} />
     </div>
   );
 };

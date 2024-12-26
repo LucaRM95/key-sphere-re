@@ -21,7 +21,7 @@ const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const PropertyCardData = ({ property }: Props) => {  
+export const PropertyCardData = ({ property }: Props) => {
   return (
     <div className="grid m-3 gap-5 sm:pl-20 sm:pr-20 lg:p-0">
       <div className="flex w-full justify-between items-center">
@@ -71,7 +71,7 @@ export const PropertyCardData = ({ property }: Props) => {
         />
       </div>
       <div className="flex h-[220px] lg:h-[180px]">
-        <Mapbox mapbox_key={MAPBOX_TOKEN} properties={property} rounded/>
+        <Mapbox mapbox_key={MAPBOX_TOKEN} properties={property} rounded />
       </div>
       <div className="flex justify-evenly w-full bg-gray-200 rounded-xl text-ks-grey p-2">
         <div className="flex flex-col font-semibold text-[14px]">
@@ -92,6 +92,7 @@ export const PropertyCardData = ({ property }: Props) => {
       </div>
       <div className="flex justify-between">
         <KeySphereButton
+          path={`/properties/${property.id}/edit`}
           icon={
             <IoPencilSharp
               size={30}

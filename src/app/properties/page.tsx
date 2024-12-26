@@ -6,7 +6,7 @@ const MAPBOX_TOKEN = process.env.MAPBOX_API_KEY || "";
 
 export default async function PropertiesPage() {
   const properties = await prisma.property.findMany();
-
+  
   return (
     <div className="grid grid-rows-12 lg:grid-cols-12 h-screen">
       <div className="row-span-4 sm:row-span-6 lg:col-span-7 xl:col-span-8 lg:h-screen">
@@ -15,8 +15,7 @@ export default async function PropertiesPage() {
       <div
         className={`
           scrollable-content row-span-8 sm:row-span-6 lg:col-span-5 xl:col-span-4
-          bg-ks-blue border-t-2 border-ks-beige lg:border-l-2 lg:border-t-0 
-          h-screen overflow-y-scroll md:p-5
+          bg-ks-white h-screen overflow-y-scroll md:p-5
         `}
       >
         <PropertiesGrid properties={properties} />

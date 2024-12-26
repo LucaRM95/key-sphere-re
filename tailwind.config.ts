@@ -21,7 +21,7 @@ module.exports = withMT({
         background: "var(--background)",
         foreground: "var(--foreground)",
         "ks-blue": "#00487c",
-        "ks-beige": "#dca85e",
+        "ks-beige": "#fde8cb",
         "ks-grey": "#515151",
         "ks-dark": "#2b2c39",
         "ks-silver": "#eeeeee",
