@@ -18,7 +18,7 @@ export default async function EditPropertyPage({
       </div>
       <div
         className={`flex flex-col row-span-9 lg:col-span-5 xl:col-span-4 
-        bg-ks-blue border-t-2 border-ks-beige lg:border-l-2 
+        bg-ks-white border-t-2 border-ks-beige lg:border-l-2 
         lg:border-t-0 h-screen overflow-y-hidden md:p-5`}
       >
         TODO: Form here

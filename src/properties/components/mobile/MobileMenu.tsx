@@ -77,7 +77,7 @@ export const MobileMenu = ({ menuItems, session }: Props) => {
                     session?.user?.image ??
                     "https://pbs.twimg.com/profile_images/849742844285812740/SN-tYeHq_400x400.jpg"
                   }
-                  alt=""
+                  alt="Profile image"
                 />
                 <div className="flex flex-col font-semibold text-ks-dark">
                   <span className="text-ks-dark">{session?.user?.name}</span>

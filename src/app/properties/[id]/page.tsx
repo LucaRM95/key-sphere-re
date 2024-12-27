@@ -20,13 +20,13 @@ export default async function PropertyByIDPage({
       </div>
       <div
         className={`flex flex-col row-span-9 lg:col-span-5 xl:col-span-4 
-        bg-ks-blue border-t-2 border-ks-beige lg:border-l-2 
+        bg-ks-white border-t-2 border-ks-beige lg:border-l-2 
         lg:border-t-0 h-screen overflow-y-hidden md:p-5`}
       >
         <div className="flex-grow">
           <PropertyCardData property={findedProperty} />
         </div>
-        <div className="bg-ks-white w-full py-3 mt-auto text-ks-dark p-5 lg:rounded-xl">
+        <div className="bg-ks-beige w-full py-3 mt-auto text-ks-dark p-5 lg:rounded-xl">
           <div className="flex justify-between">
             <div className="text-ks-dark">
               <span className="text-ks-blue text-3xl font-bold">365k+</span>

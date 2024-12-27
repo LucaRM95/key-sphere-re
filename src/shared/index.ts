@@ -1,2 +1,2 @@
-export type { INotificationService } from "./services/INotificationService";
+export type { INotificationService } from "./interfaces/INotificationService";
 export { reactToastifyService } from "./config/react-toastify";
