@@ -5,6 +5,18 @@ import { notificationService } from "@/shared/services/notificationService";
 import { Property } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
+export const getProperties = async (query = {} as any) => {
+  try {
+    const properties = await prisma.property.findMany(query);
+
+    return properties;
+  } catch (error) {
+    return notificationService.error(
+      "Ocurrió un error al intentar consultar las propiedades."
+    );
+  }
+};
+
 export const getUserById = async (id: string) => {
   try {
     const property = await prisma.user.findFirst({ where: { id } });

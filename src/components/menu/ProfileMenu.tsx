@@ -8,6 +8,7 @@ import {
   MenuItem,
   Typography,
 } from "@material-tailwind/react";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
@@ -46,7 +47,7 @@ export function ProfileMenu({ image, menuList }: Props) {
           </MenuItem>
         ))}
         <hr className="my-2 border-blue-gray-50" />
-        <MenuItem {...({ className: "flex items-center gap-2 " } as any)}>
+        <MenuItem {...({ className: "flex items-center gap-2 ", onClick: () => signOut() } as any)}>
           <FaArrowRightFromBracket />
           <Typography
             {...({ variant: "small", className: "font-medium" } as any)}

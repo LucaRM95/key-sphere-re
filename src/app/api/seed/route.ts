@@ -14,6 +14,7 @@ export async function GET(request: Request) {
       password: bcrypt.hashSync('Caroline123456'),
       isActive: true,
       email: "cForbes@mail.com",
+      tel: "+5491131778866",
       properties: {
         create: [
           {
@@ -87,6 +88,7 @@ export async function GET(request: Request) {
       password: bcrypt.hashSync('Luke123456'),
       isActive: true,
       email: "lPetrov@mail.com",
+      tel: "+5491131778866",
       properties: {
         create: [
           {
@@ -236,6 +238,7 @@ export async function GET(request: Request) {
       password: bcrypt.hashSync('Damon123456'),
       isActive: true,
       email: "dSalvatore@mail.com",
+      tel: "+5491131778866",
       properties: {
         create: [
           {
@@ -328,6 +331,7 @@ export async function GET(request: Request) {
       password: bcrypt.hashSync('Katherine123456'),
       isActive: true,
       email: "kPierce@mail.com",
+      tel: "+5491131778866",
       properties: {
         create: [
           {

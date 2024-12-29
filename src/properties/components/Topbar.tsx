@@ -43,7 +43,7 @@ export const Topbar = ({ withoutBg = false, session }: Props) => {
             pathname === "/" ? "text-ks-white" : "text-ks-dark"
           } w-full`}
         >
-          <span className="font-bold">K.S.</span>
+          <span className="font-bold text-3xl">KSphere.</span>
         </div>
       </Link>
 

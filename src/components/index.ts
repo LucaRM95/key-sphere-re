@@ -1,8 +1,11 @@
 export { Mapbox } from "./Mapbox"; 
 export { CarouselCustom } from "./CarouselCustom"; 
 
+export { PropertyCard } from "./cards/PropertyCard"
+
 export { KeySphereButton } from "./buttons/KeySphereButton"; 
 export { ActionsKSButton } from "./buttons/ActionsKSButton"; 
+export { KsPagination } from "./buttons/KsPagination"; 
 
 export { SelectInput } from "./inputs/SelectInput"; 
 export { KSphereInput } from "./inputs/KSphereInput";
