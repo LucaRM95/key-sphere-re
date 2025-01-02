@@ -7,7 +7,7 @@ import React from "react";
 import { PropertiesActions } from "@/properties/index";
 import { getUserSessionServer } from "@/auth/actions/auth-actions";
 
-import { FaHouse, FaRulerHorizontal, FaTag, FaHeart, FaPen, FaShareNodes } from "react-icons/fa6";
+import { FaHouse, FaRulerHorizontal, FaTag, FaHeart, FaPen, FaShareNodes, FaBed, FaBath } from "react-icons/fa6";
 
 interface Props {
   property: Property;
@@ -18,7 +18,7 @@ export const PropertyCard = async ({ property }: Props) => {
   const user = await PropertiesActions.getUserById(property.userId);
 
   return (
-    <div className="bg-ks-beige  h-[550px] rounded">
+    <div className="col-span-2 xl:col-span-1 bg-ks-beige  h-[550px] rounded">
       <div className="relative w-full h-[50%]">
         <Link href={`/properties/${property.id}`}>
           <Image
@@ -63,17 +63,25 @@ export const PropertyCard = async ({ property }: Props) => {
             </span>
           </div>
         </div>
-        <div className="flex justify-start gap-5 m-3 text-ks-grey">
+        <div className="flex flex-wrap justify-start gap-5 m-3 text-ks-grey">
           <div className="flex items-center gap-2">
-            <FaHouse size={20} />
+            <FaHouse />
             <span>{property.type}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FaRulerHorizontal size={20} />
+            <FaRulerHorizontal />
             <span>{property.area}m²</span>
           </div>
           <div className="flex items-center gap-2">
-            <FaTag size={20} />
+            <FaBed />
+            <span>{property.beds}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaBath />
+            <span>{property.baths}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaTag />
             <span>{property.status}</span>
           </div>
         </div>

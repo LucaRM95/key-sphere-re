@@ -39,11 +39,13 @@ export const PropertiesGrid = ({
       <div className="flex w-full justify-between items-center mt-3">
         <SelectInput />
       </div>
-      {properties.length > 0 ? (
-        properties.map((prop) => <PropertyCard key={prop.id} property={prop} />)
-      ) : (
-        <NoDataAvailable />
-      )}
+      <div className="grid grid-cols-2 gap-5">
+        {properties.length > 0 ? (
+          properties.map((prop) => <PropertyCard key={prop.id} property={prop} />)
+        ) : (
+          <NoDataAvailable />
+        )}
+      </div>
     </div>
   );
 };

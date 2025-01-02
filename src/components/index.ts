@@ -3,8 +3,10 @@ export { CarouselCustom } from "./CarouselCustom";
 
 export { PropertyCard } from "./cards/PropertyCard"
 
-export { KeySphereButton } from "./buttons/KeySphereButton"; 
 export { ActionsKSButton } from "./buttons/ActionsKSButton"; 
+export { BackButtonLink } from "./buttons/BackButtonLink"; 
+export { KeySphereButton } from "./buttons/KeySphereButton"; 
+export { KsBeigeButton } from "./buttons/KsBeigeButton"; 
 export { KsPagination } from "./buttons/KsPagination"; 
 
 export { SelectInput } from "./inputs/SelectInput"; 

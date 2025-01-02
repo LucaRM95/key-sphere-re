@@ -1,6 +1,6 @@
-export const  PropertyCard = ({ image, title, price, beds, baths, size, location, className}: any) => {
+export const  PropertyCard = ({ key, image, title, price, beds, baths, size, location, className}: any) => {
     return (
-      <div className={`shadow rounded overflow-hidden xl:w-80 bg-white ${className}`}>
+      <div key={key} className={`shadow rounded-xl overflow-hidden xl:w-80 bg-white ${className}`}>
         <div
           className="h-80 bg-cover bg-center"
           style={{ backgroundImage: `url(${image})` }}

@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 const withMT = require("@material-tailwind/react/utils/withMT");
- 
+
 module.exports = withMT({
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,6 +13,7 @@ module.exports = withMT({
       sm: "640px",
       md: "768px",
       lg: "1024px",
+      "2lg": "1180px",
       xl: "1430px",
       "2xl": "1536px",
     },
@@ -29,6 +30,20 @@ module.exports = withMT({
       },
       fontFamily: {
         lato: ["Lato", "sans-serif"],
+      },
+      animation: {
+        "slide-up": "slideUp 0.3s ease-out",
+        "slide-down": "slideDown 0.3s ease-out",
+      },
+      keyframes: {
+        slideUp: {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        slideDown: {
+          "0%": { transform: "translateY(-20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
       },
     },
   },

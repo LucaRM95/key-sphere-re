@@ -1,3 +1,5 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { CarouselCustom } from "@/components";
 import prisma from "@/lib/prisma";
 import { PropertyCardData } from "@/properties";
@@ -7,12 +9,12 @@ export default async function PropertyByIDPage({
 }: {
   params: { id: string };
 }) {
+  const session = await getServerSession(authOptions);
   const findedProperty: any = await prisma.property.findFirst({
     where: { id: params.id },
   });
-
   const slides = findedProperty.images;
-
+ 
   return (
     <div className="grid grid-rows-12 lg:grid-cols-12 h-screen">
       <div className="row-span-4 sm:row-span-6 lg:col-span-7 xl:col-span-8 lg:h-screen">
@@ -24,7 +26,7 @@ export default async function PropertyByIDPage({
         lg:border-t-0 h-screen overflow-y-hidden md:p-5`}
       >
         <div className="flex-grow">
-          <PropertyCardData property={findedProperty} />
+          <PropertyCardData isOwner={(session?.user as any)?.id === findedProperty?.userId}  property={findedProperty} />
         </div>
         <div className="bg-ks-beige w-full py-3 mt-auto text-ks-dark p-5 lg:rounded-xl">
           <div className="flex justify-between">
@@ -43,7 +45,9 @@ export default async function PropertyByIDPage({
           </div>
           <div className="flex justify-between mt-3">
             <div className="text-gray-500">
-              <span className="text-ks-grey text-3xl font-bold">Trusted By</span>
+              <span className="text-ks-grey text-3xl font-bold">
+                Trusted By
+              </span>
               <p>More than 15,000+ brand trust us</p>
             </div>
           </div>

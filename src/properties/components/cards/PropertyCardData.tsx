@@ -1,5 +1,5 @@
 import type { Property } from "@prisma/client";
-import { ActionsKSButton, KeySphereButton, Mapbox, VerticalSeparator } from "@/components";
+import { ActionsKSButton, BackButtonLink, KeySphereButton, Mapbox, VerticalSeparator } from "@/components";
 import {
   IoHome,
   IoLocationSharp,
@@ -9,19 +9,23 @@ import {
 } from "react-icons/io5";
 import { BiSolidDollarCircle } from "react-icons/bi";
 import { Widget } from "../Widget";
-import { FaHeart, FaShareAlt } from "react-icons/fa";
+import { FaHeart, FaShareNodes } from "react-icons/fa6";
+import { getUserById } from "@/properties/actions/properties-actions";
 
 const MAPBOX_TOKEN = process.env.MAPBOX_API_KEY || "";
 
 interface Props {
   property: Property;
+  isOwner?: boolean;
 }
 
 const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export const PropertyCardData = ({ property }: Props) => {
+export const PropertyCardData = async ({ property, isOwner = false }: Props) => {
+  const owner = await getUserById(property.userId);
+
   return (
     <div className="grid m-3 gap-5 sm:pl-20 sm:pr-20 lg:p-0">
       <div className="flex w-full justify-between items-center">
@@ -32,7 +36,10 @@ export const PropertyCardData = ({ property }: Props) => {
               {"Unlock your new life".toUpperCase()}
             </span>
           </div>
-          <h1 className="text-4xl font-bold">{property.title}</h1>
+          <div className="flex items-center gap-5 md:gap-10">
+            <BackButtonLink />
+            <h1 className="text-3xl font-bold">{property.title}</h1>
+          </div>
           <div className="flex mt-2 w-full gap-4">
             <div className="flex justify-center items-center gap-2 bg-ks-beige text-ks-dark text-xs font-bold px-3 py-1 rounded-full z-5">
               <div
@@ -78,7 +85,7 @@ export const PropertyCardData = ({ property }: Props) => {
           <h6 className="text-ks-white">Owner name</h6>
           <div className="flex items-center gap-2">
             <IoPersonSharp />
-            <span className="text-ks-beige">Caroline Forbes</span>
+            <span className="text-ks-beige">{ owner?.name }</span>
           </div>
         </div>
         <VerticalSeparator />
@@ -86,23 +93,25 @@ export const PropertyCardData = ({ property }: Props) => {
           <h6 className="text-ks-white">Owner contact</h6>
           <div className="flex items-center gap-2">
             <IoMail />
-            <span className="text-ks-beige">CarolineForbes@mail.com</span>
+            <span className="text-ks-beige">{owner?.email}</span>
           </div>
         </div>
       </div>
-      <div className="flex justify-between">
-        <KeySphereButton
-          path={`/properties/${property.id}/edit`}
-          icon={
-            <IoPencilSharp
-              size={30}
-              className="text-ks-grey bg-ks-beige h-full rounded-tl-full rounded-bl-full p-2"
-            />
-          }
-          text="Edit Property"
-        />
-        <div className="flex justify-end w-6/12 gap-5">
-          <ActionsKSButton icon={<FaShareAlt className="text-ks-beige" />} />
+      <div className={`flex ${isOwner ? "justify-between" : "justify-start"}`}>
+        {isOwner && (
+          <KeySphereButton
+            path={`/properties/${property.id}/edit`}
+            icon={
+              <IoPencilSharp
+                size={30}
+                className="text-ks-grey bg-ks-beige h-full rounded-tl-full rounded-bl-full p-2"
+              />
+            }
+            text="Edit Property"
+          />
+        )}
+        <div className={`flex ${isOwner ? "justify-end" : "justify-start"} w-6/12 gap-5`}>
+          <ActionsKSButton icon={<FaShareNodes className="text-ks-beige" />} />
           <ActionsKSButton icon={<FaHeart className="text-ks-beige" />} />
         </div>
       </div>

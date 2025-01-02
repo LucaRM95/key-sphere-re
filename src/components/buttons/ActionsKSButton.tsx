@@ -20,13 +20,13 @@ export const ActionsKSButton = ({
     <>
       {isLink ? (
         <Link
-          className="flex items-center justify-center bg-ks-dark rounded-full shadow hover:bg-gray-100 w-[31px] h-[31px]"
+          className="flex items-center justify-center bg-ks-dark rounded-full shadow hover:bg-ks-grey w-[31px] h-[31px]"
           href={href}
         >
           {icon}
         </Link>
       ) : (
-        <button onClick={onClick} className="flex items-center justify-center bg-ks-dark rounded-full shadow hover:bg-gray-100 w-[31px] h-[31px]">
+        <button onClick={onClick} className="flex items-center justify-center bg-ks-dark rounded-full shadow hover:bg-ks-grey w-[31px] h-[31px]">
           {icon}
         </button>
       )}
