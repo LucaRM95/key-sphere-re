@@ -1,15 +1,30 @@
-import { CarouselCustom } from "@/components";
+import { getUserSessionServer } from "@/auth/actions/auth-actions";
 import prisma from "@/lib/prisma";
-import { PropertyCardData } from "@/properties";
+import { PropertyForm } from "@/properties";
+import { redirect } from "next/navigation";
 
 export default async function EditPropertyPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }> 
 }) {
-  const findedProperty: any = await prisma.property.findFirst({
-    where: { id: params.id },
+  const { id } = await params;
+  if (!id) {
+    redirect("/properties");
+  }
+
+  const session = await getUserSessionServer();
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
+  const findedProperty = await prisma.property.findFirst({
+    where: { id },
   });
+
+  if (!findedProperty || session?.id !== findedProperty.userId) {
+    redirect("/properties");
+  }
 
   return (
     <div className="grid grid-rows-12 lg:grid-cols-12 h-screen">
@@ -17,12 +32,16 @@ export default async function EditPropertyPage({
         TODO: Images over here
       </div>
       <div
-        className={`flex flex-col row-span-9 lg:col-span-5 xl:col-span-4 
+        className={`
+        flex flex-col row-span-9 lg:col-span-5 xl:col-span-4 
         bg-ks-white border-t-2 border-ks-beige lg:border-l-2 
-        lg:border-t-0 h-screen overflow-y-hidden md:p-5`}
+        lg:border-t-0 h-screen overflow-y-hidden md:p-5 text-ks-dark`}
       >
-        TODO: Form here
-        { JSON.stringify(findedProperty) }
+        <PropertyForm
+          defaultState={findedProperty}
+          userId={session?.id || ""}
+          editProperty
+        />
       </div>
     </div>
   );

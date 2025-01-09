@@ -4,7 +4,7 @@ import { HorizontalSeparator, KeySphereButton } from "@/components";
 import { MenuItem } from "@/properties/interfaces/menuItem.interface";
 import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -71,11 +71,11 @@ export const MobileMenu = ({ menuItems, session }: Props) => {
               <div className="flex items-center space-x-1 overflow-hidden w-full h-[100px] pl-3 pr-3 gap-4">
                 <Image
                   width={50}
-                  height={0}
+                  height={50}
                   className=" inline-block size-14 rounded-full ring-2 ring-ks-white"
                   src={
                     session?.user?.image ??
-                    "https://pbs.twimg.com/profile_images/849742844285812740/SN-tYeHq_400x400.jpg"
+                    "/images/no-profile-icon.jpg"
                   }
                   alt="Profile image"
                 />

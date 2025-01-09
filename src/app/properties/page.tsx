@@ -18,7 +18,7 @@ export default async function PropertiesPage() {
           bg-ks-white h-screen overflow-y-scroll md:p-5
         `}
       >
-        <PropertiesGrid properties={properties} />
+        <PropertiesGrid properties={properties} hiddenInactive />
       </div>
     </div>
   );

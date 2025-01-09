@@ -1,15 +1,11 @@
 "use client";
 
 import React from "react";
-import { KeySphereButton, ProfileMenu } from "@/components";
+import { ProfileMenu } from "@/components";
 import { MenuItem } from "@/properties/interfaces/menuItem.interface";
 import { Session } from "next-auth";
-import { signIn, signOut } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaAngleDown } from "react-icons/fa6";
-import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 
 interface Props {
   menuItems: Array<MenuItem>;
@@ -18,7 +14,7 @@ interface Props {
 
 export const DesktopMenu = ({ menuItems, session }: Props) => {
   const pathName = usePathname();
-
+  
   return (
     <nav className="hidden xl:flex items-center gap-6">
       {menuItems.map(({ path, name, icon, children }) => (
@@ -45,37 +41,14 @@ export const DesktopMenu = ({ menuItems, session }: Props) => {
               <span className="text-[10px]">{name.toUpperCase()}</span>
             </Link>
           ) : (
-            <>
-              {session ? (
-                <ProfileMenu
-                  image={
-                    session?.user?.image ??
-                    "https://pbs.twimg.com/profile_images/849742844285812740/SN-tYeHq_400x400.jpg"
-                  }
-                  menuList={children!}
-                />
-              ) : (
-                <KeySphereButton
-                  isButton
-                  onClick={() => (session ? signOut() : signIn())}
-                  icon={
-                    session ? (
-                      <IoLogOutOutline
-                        className="text-ks-dark bg-ks-beige h-full rounded-tl-full rounded-bl-full p-2"
-                        size={35}
-                      />
-                    ) : (
-                      <IoLogInOutline
-                        className="text-ks-dark bg-ks-beige h-full rounded-tl-full rounded-bl-full p-2"
-                        size={35}
-                      />
-                    )
-                  }
-                  text={session ? "Logout" : "Login"}
-                  path="#"
-                />
-              )}
-            </>
+            <ProfileMenu
+              image={
+                session?.user?.image ??
+                "/images/no-user-icon.jpg"
+              }
+              menuList={children!}
+              noLogin={!session}
+            />
           )}
         </React.Fragment>
       ))}

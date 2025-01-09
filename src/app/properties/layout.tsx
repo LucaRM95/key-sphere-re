@@ -15,10 +15,6 @@ export default async function PropertiesLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-  
-  if (!session) {
-    redirect("/api/auth/signin");
-  }
 
   return (
     <div className="relative h-screen scrollable-content">

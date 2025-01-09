@@ -2,17 +2,22 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { CarouselCustom } from "@/components";
 import prisma from "@/lib/prisma";
-import { PropertyCardData } from "@/properties";
+import { PropertyDetails } from "@/properties";
+import { redirect } from "next/navigation";
 
 export default async function PropertyByIDPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const session = await getServerSession(authOptions);
   const findedProperty: any = await prisma.property.findFirst({
     where: { id: params.id },
   });
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   const slides = findedProperty.images;
  
   return (
@@ -26,7 +31,7 @@ export default async function PropertyByIDPage({
         lg:border-t-0 h-screen overflow-y-hidden md:p-5`}
       >
         <div className="flex-grow">
-          <PropertyCardData isOwner={(session?.user as any)?.id === findedProperty?.userId}  property={findedProperty} />
+          <PropertyDetails isOwner={(session?.user as any)?.id === findedProperty?.userId}  property={findedProperty} />
         </div>
         <div className="bg-ks-beige w-full py-3 mt-auto text-ks-dark p-5 lg:rounded-xl">
           <div className="flex justify-between">

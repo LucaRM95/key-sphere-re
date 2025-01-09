@@ -1,18 +1,19 @@
 import { PropertyCard } from "./cards/PropertyCard";
 import { Property } from "@prisma/client";
 import { KeySphereButton, NoDataAvailable, SelectInput } from "@/components";
-import { IoAdd } from "react-icons/io5";
+import { FaPlus } from "react-icons/fa6";
 
 interface Props {
   properties: Array<Property>;
   title?: string;
+  hiddenInactive?: boolean;
 }
 
 export const PropertiesGrid = ({
   properties,
   title = "Find your home",
+  hiddenInactive = false,
 }: Props) => {
-  
   return (
     <div className="grid m-3 gap-10 sm:pl-20 sm:pr-20 lg:p-0">
       <div className="flex w-full justify-between items-center">
@@ -23,12 +24,12 @@ export const PropertiesGrid = ({
               {"Unlock your new life".toUpperCase()}
             </span>
           </div>
-          <span className="text-ks-dark text-2xl font-bold">{title}</span>
+          <h1 className="text-3xl font-bold text-ks-dark">{title}</h1>
         </div>
         <KeySphereButton
           path="/properties/new-property"
           icon={
-            <IoAdd
+            <FaPlus
               size={30}
               className="text-ks-dark bg-ks-beige h-full rounded-tl-full rounded-bl-full p-2"
             />
@@ -41,7 +42,19 @@ export const PropertiesGrid = ({
       </div>
       <div className="grid grid-cols-2 gap-5">
         {properties.length > 0 ? (
-          properties.map((prop) => <PropertyCard key={prop.id} property={prop} />)
+          properties.map((prop) => (
+            <>
+              {hiddenInactive ? (
+                prop.isActive ? (
+                  <PropertyCard key={prop.id} property={prop} />
+                ) : (
+                  <></>
+                )
+              ) : (
+                <PropertyCard key={prop.id} property={prop} />
+              )}
+            </>
+          ))
         ) : (
           <NoDataAvailable />
         )}

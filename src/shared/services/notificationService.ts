@@ -1,20 +1,13 @@
-import { reactToastifyService } from "../config/react-toastify";
-import { INotificationService } from "../interfaces/INotificationService";
+import Swal from "sweetalert2"
 
-
-class NotificationService {
-  notificationService: INotificationService;
-  constructor(notificationService: INotificationService) {
-    this.notificationService = notificationService;
+export const Toast = Swal.mixin({
+  toast: true,
+  position: "bottom-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
   }
-  success(msg: string) {
-    this.notificationService.success(msg);
-  }
-  error(msg: string) {
-    this.notificationService.error(msg);
-  }
-}
-
-export const notificationService = new NotificationService(
-  reactToastifyService
-);
+});

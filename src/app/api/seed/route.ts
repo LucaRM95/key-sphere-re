@@ -92,7 +92,7 @@ export async function GET(request: Request) {
       name: "Luke Petrov",
       roles: ["admin", "super-user"],
       image:
-        "https://static.wikia.nocookie.net/vampirediaries/images/3/3c/Stefan_Vamped_Out.jpg/revision/latest/scale-to-width-down/1000?cb=20130809062739",
+        "https://drive.google.com/file/d/1t4GWcUI2A4dkzuIDkIQHbMABuapdNAZY/view?usp=sharing",
       password: bcrypt.hashSync("Luke123456"),
       isActive: true,
       email: "lPetrov@mail.com",

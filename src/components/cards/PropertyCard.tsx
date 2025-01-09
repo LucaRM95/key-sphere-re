@@ -1,4 +1,15 @@
-export const  PropertyCard = ({ key, image, title, price, beds, baths, size, location, className}: any) => {
+interface Props {
+  key: string;
+  image: string;
+  title: string;
+  price: number;
+  beds: number;
+  baths: number;
+  size: string;
+  location: string;
+  className: string;}
+
+export const  PropertyCard = ({ key, image, title, price, beds, baths, size, location, className }: Props) => {
     return (
       <div key={key} className={`shadow rounded-xl overflow-hidden xl:w-80 bg-white ${className}`}>
         <div

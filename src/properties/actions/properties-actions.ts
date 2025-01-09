@@ -1,9 +1,9 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { notificationService } from "@/shared/services/notificationService";
-import { Property } from "@prisma/client";
+import { Property } from "@/shared";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const getProperties = async (query = {} as any) => {
   try {
@@ -11,9 +11,7 @@ export const getProperties = async (query = {} as any) => {
 
     return properties;
   } catch (error) {
-    return notificationService.error(
-      "Ocurrió un error al intentar consultar las propiedades."
-    );
+    return null;
   }
 };
 
@@ -23,9 +21,7 @@ export const getUserById = async (id: string) => {
 
     return property;
   } catch (error) {
-    return notificationService.error(
-      `Ocurrio un error al intentar cargar el usuario con id: ${id}.`
-    );
+    return null;
   }
 };
 
@@ -35,21 +31,37 @@ export const getPropertyById = async (id: string) => {
 
     return property;
   } catch (error) {
-    return notificationService.error(
-      `Ocurrio un error al intentar cargar la propiedad ${id}.`
-    );
+    return null;
   }
 };
 
-export const addProperty = async (property: Property): Promise<void> => {
+export const createProperty = async (
+  property: Property,
+  userId: string
+): Promise<Property | null> => {
   try {
-    await prisma.property.create({ data: property });
+    const newProperty = await prisma.property.create({
+      data: { ...property, userId },
+    });
 
-    revalidatePath("/properties");
-    return notificationService.success("Propiedad creada correctamente.");
+    return newProperty;
   } catch (error) {
-    return notificationService.success(
-      "Ocurrió un error al intentar crear la propiedad."
-    );
+    throw new Error("An error has occurred tring to create a new property.");
+  }
+};
+
+export const editProperty = async (
+  property: Property,
+  pid: string
+): Promise<Property | null> => {
+  try {
+    const updatedProperty = await prisma.property.update({
+      where: { id: pid },
+      data: { ...property },
+    });
+
+    return updatedProperty;
+  } catch (error) {
+    throw new Error("An error has occurred tring to create a new property.");
   }
 };

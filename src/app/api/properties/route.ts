@@ -1,3 +1,4 @@
+import { getUserSessionServer } from "@/auth/actions/auth-actions";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import * as yup from "yup";
@@ -30,32 +31,37 @@ export async function GET(request: Request) {
   });
 }
 
-const images = yup.string();
+const images = yup.string().default("");
 
 const postSchema = yup.object({
   title: yup.string().required(),
   address: yup.string().required(),
-  description: yup.string(),
-  lat: yup.number(),
-  lng: yup.number(),
+  description: yup.string().default(""),
+  lat: yup.number().default(0),
+  lng: yup.number().default(0),
   images: yup.array().of(images),
   type: yup.string().required(),
-  status: yup.string(),
-  isActive: yup.boolean(),
+  status: yup.string().required(),
+  isActive: yup.boolean().default(false),
   price: yup.number().required(),
-  area: yup.number(),
-  ownerId: yup.string(),
+  area: yup.number().default(0),
+  beds: yup.number().default(0),
+  baths: yup.number().default(0),
 });
 
-// export async function POST(request: Request) {
-//   try {
-//     const property = await postSchema.validate(await request.json());
-//     const property = await prisma.property.create({
-//       data: property,
-//     });
+export async function POST(request: Request) {
+  const user = await getUserSessionServer();
 
-//     return NextResponse.json(property);
-//   } catch (error) {
-//     return NextResponse.json(error, { status: 400 });
-//   }
-// }
+  if (!user) return NextResponse.json("No autorizado", { status: 401 });
+
+  try {
+    const { ...property } = await postSchema.validate(await request.json());
+    const createdProperty = await prisma.property.create({
+      data: { ...property, userId: user.id },
+    });
+    
+    return NextResponse.json(createdProperty);
+  } catch (error) {
+    return NextResponse.json(error, { status: 400 });
+  }
+}

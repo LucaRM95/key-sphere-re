@@ -1,6 +1,6 @@
 import { ActionsKSButton, VerticalSeparator } from "@/components";
 import { Property } from "@prisma/client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React from "react";
 
@@ -13,7 +13,7 @@ interface Props {
   property: Property;
 }
 
-export const PropertyCard = async ({ property }: Props) => {
+export const PropertyCard = async ({ property }: Props) => {  
   const sessionUser = await getUserSessionServer();
   const user = await PropertiesActions.getUserById(property.userId);
 

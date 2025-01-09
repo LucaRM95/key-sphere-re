@@ -1,7 +1,7 @@
 export { DesktopMenu } from "./components/desktop/DesktopMenu";
 export { MobileMenu } from "./components/mobile/MobileMenu";
 
-export { PropertyCardData } from "./components/cards/PropertyCardData";
+export { PropertyDetails } from "./components/cards/PropertyDetails";
 export { PropertiesGrid } from "./components/PropertiesGrid";
 export { PropertyCard } from "./components/cards/PropertyCard";
 
