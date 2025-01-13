@@ -1,4 +1,4 @@
-import { getUserSessionServer } from "@/auth/actions/auth-actions";
+import { auth } from "@/auth.config";
 import prisma from "@/lib/prisma";
 import { PropertyForm } from "@/properties";
 import { redirect } from "next/navigation";
@@ -12,8 +12,9 @@ export default async function EditPropertyPage({
   if (!id) {
     redirect("/properties");
   }
+  const session = await auth();
+  const user = session?.user;
 
-  const session = await getUserSessionServer();
   if (!session) {
     redirect("/api/auth/signin");
   }
@@ -22,7 +23,7 @@ export default async function EditPropertyPage({
     where: { id },
   });
 
-  if (!findedProperty || session?.id !== findedProperty.userId) {
+  if (!findedProperty || user?.id !== findedProperty.userId) {
     redirect("/properties");
   }
 
@@ -39,7 +40,7 @@ export default async function EditPropertyPage({
       >
         <PropertyForm
           defaultState={findedProperty}
-          userId={session?.id || ""}
+          userId={user?.id || ""}
           editProperty
         />
       </div>

@@ -8,8 +8,8 @@ import {
 } from "@/components";
 import { FaPencil, FaPlus } from "react-icons/fa6";
 
-import { booleanParser, Property, useForm } from "@/shared";
-import { useEffect } from "react";
+import { booleanParser, Property } from "@/shared";
+import { usePropertiesForm } from "../hooks/usePropertiesForm";
 
 const options = [
   { value: "rent", title: "Rent" },
@@ -32,7 +32,7 @@ export const PropertyForm = ({
   defaultState,
   editProperty = false,
 }: Props) => {
-  const { value, setValue, onCreateProperty, onEditProperty } = useForm(
+  const { value, setValue, onCreateProperty, onEditProperty } = usePropertiesForm(
     "The property has been created successfully.",
     "An error has occurred.",
     userId,
@@ -172,6 +172,7 @@ export const PropertyForm = ({
               <FaPlus className="!text-ks-dark h-full" />
             )
           }
+          selfEnd
         />
       </form>
     </div>

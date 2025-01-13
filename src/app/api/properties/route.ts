@@ -1,4 +1,4 @@
-import { getUserSessionServer } from "@/auth/actions/auth-actions";
+import { auth } from "@/auth.config";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import * as yup from "yup";
@@ -50,7 +50,8 @@ const postSchema = yup.object({
 });
 
 export async function POST(request: Request) {
-  const user = await getUserSessionServer();
+  const session = await auth();
+  const user = session?.user;
 
   if (!user) return NextResponse.json("No autorizado", { status: 401 });
 

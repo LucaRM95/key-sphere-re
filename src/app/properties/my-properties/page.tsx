@@ -1,4 +1,4 @@
-import { getUserSessionServer } from "@/auth/actions/auth-actions";
+import { auth } from "@/auth.config";
 import { Mapbox } from "@/components";
 import prisma from "@/lib/prisma";
 import { PropertiesGrid } from "@/properties";
@@ -7,14 +7,15 @@ import { redirect } from "next/navigation";
 const MAPBOX_TOKEN = process.env.MAPBOX_API_KEY || "";
 
 export default async function MyPropertiesPage() {
-  const sessionUser = await getUserSessionServer();
+  const session = await auth();
+  const user = session?.user;
 
-  if (!sessionUser) {
+  if (!user) {
     redirect("/api/auth/signin");
   }
 
   const userId = await prisma.user.findUnique({
-    where: { email: sessionUser?.email ?? "" },
+    where: { email: user?.email ?? "" },
   });
   const properties = await prisma.property.findMany({
     where: { userId: userId?.id },

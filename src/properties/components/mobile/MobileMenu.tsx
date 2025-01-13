@@ -1,9 +1,10 @@
 "use client";
 
+import { logout } from "@/auth";
 import { HorizontalSeparator, KeySphereButton } from "@/components";
 import { MenuItem } from "@/properties/interfaces/menuItem.interface";
 import { Session } from "next-auth";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,9 +23,13 @@ interface Props {
 
 export const MobileMenu = ({ menuItems, session }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const currentSession = useSession();
   const pathName = usePathname();
 
+  console.log(session)
+
   const toggleMenu = () => setMenuOpen(!menuOpen);
+ 
 
   return (
     <>
@@ -73,10 +78,7 @@ export const MobileMenu = ({ menuItems, session }: Props) => {
                   width={50}
                   height={50}
                   className=" inline-block size-14 rounded-full ring-2 ring-ks-white"
-                  src={
-                    session?.user?.image ??
-                    "/images/no-profile-icon.jpg"
-                  }
+                  src={session?.user?.image ?? "/images/no-user-icon.jpg"}
                   alt="Profile image"
                 />
                 <div className="flex flex-col font-semibold text-ks-dark">
@@ -112,7 +114,7 @@ export const MobileMenu = ({ menuItems, session }: Props) => {
           <HorizontalSeparator />
           <div>
             <KeySphereButton
-              onClick={() => (session ? signOut() : signIn())}
+              onClick={() => (session ? logout() : signIn())}
               icon={
                 session ? (
                   <IoLogOutOutline
@@ -128,6 +130,7 @@ export const MobileMenu = ({ menuItems, session }: Props) => {
               }
               text={session ? "Logout" : "Login"}
               path="#"
+              selfEnd
             />
           </div>
         </div>

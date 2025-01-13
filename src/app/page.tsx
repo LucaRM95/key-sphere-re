@@ -1,16 +1,11 @@
-import { getServerSession } from "next-auth";
-
-import { authOptions } from "./api/auth/[...nextauth]/route";
-
 import { HeroSection, Topbar, Footer, CTASection, Highlights, OurTeam } from "@/properties";
 import { KsBeigeButton } from "@/components";
 import { getProperties } from "@/properties/actions/properties-actions";
+import { auth } from "@/auth.config";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const properties = await getProperties({ take: 4 });
-
-
   
   return (
     <div className="flex flex-col bg-ks-white">

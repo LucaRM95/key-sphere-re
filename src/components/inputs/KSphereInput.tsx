@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 interface Props {
+  name?: string;
   className?: string;
   onChange?: any;
   title: string;
@@ -8,24 +9,28 @@ interface Props {
   type: string;
   placeholder?: string;
   defaultValue?: string;
+  labelColor?: string;
 }
 
 export const KSphereInput = ({
+  name="",
   className = "",
   onChange = () => {},
   title,
   required = false,
   type,
   placeholder = "",
-  defaultValue = ""
+  defaultValue = "",
+  labelColor = "text-ks-dark",
 }: Props) => {
   return (
     <div className={`${className} flex justify-center flex-col gap-3`}>
-      <label className="text-lg text-ks-dark font-semibold" htmlFor="title">
+      <label className={`text-lg ${labelColor} font-semibold`} htmlFor={name}>
         {title} {required && <span className="text-red-600">*</span>}
       </label>
       {type === "description" ? (
         <textarea
+          name={name}
           onChange={onChange}
           className="text-ks-dark p-2 rounded-lg"
           placeholder="...Lorem Ipsum"
@@ -33,8 +38,9 @@ export const KSphereInput = ({
         ></textarea>
       ) : (
         <input
+          name={name}
           onChange={onChange}
-          className="p-2 rounded-lg text-ks-dark"
+          className="p-3 rounded-lg text-ks-dark"
           type={type}
           placeholder={placeholder}
           required={required}

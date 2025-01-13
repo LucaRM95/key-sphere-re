@@ -1,7 +1,6 @@
+import { auth } from "@/auth.config";
 import { Topbar } from "@/properties";
 import { Metadata } from "next";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -14,7 +13,7 @@ export default async function PropertiesLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   return (
     <div className="relative h-screen scrollable-content">

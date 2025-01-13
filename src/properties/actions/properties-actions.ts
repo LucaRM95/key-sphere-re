@@ -2,8 +2,6 @@
 
 import prisma from "@/lib/prisma";
 import { Property } from "@/shared";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export const getProperties = async (query = {} as any) => {
   try {

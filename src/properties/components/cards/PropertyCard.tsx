@@ -5,16 +5,17 @@ import Link from "next/link";
 import React from "react";
 
 import { PropertiesActions } from "@/properties/index";
-import { getUserSessionServer } from "@/auth/actions/auth-actions";
 
 import { FaHouse, FaRulerHorizontal, FaTag, FaHeart, FaPen, FaShareNodes, FaBed, FaBath } from "react-icons/fa6";
+import { auth } from "@/auth.config";
 
 interface Props {
   property: Property;
 }
 
 export const PropertyCard = async ({ property }: Props) => {  
-  const sessionUser = await getUserSessionServer();
+  const session = await auth();
+  const sessionUser = session?.user;
   const user = await PropertiesActions.getUserById(property.userId);
 
   return (

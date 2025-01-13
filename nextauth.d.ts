@@ -1,17 +1,17 @@
 import { DefaultSession, DefaultUser } from "next-auth";
 
 interface IUser extends DefaultUser {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified?: boolean;
   roles?: string[];
-  /**
-   * Agregar cualquier otro campo que tu manejas
-   */
-}
+  image?: string;
+};
 
-declare module "next-auth" {
-  interface User extends IUser {}
-
+declare module 'next-auth' {
   interface Session {
-    user?: User;
+    user?: User 
   }
 }
 

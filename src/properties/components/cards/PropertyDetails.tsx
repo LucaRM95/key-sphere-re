@@ -117,6 +117,7 @@ export const PropertyDetails = async ({
               />
             }
             text="Edit Property"
+            selfEnd
           />
         )}
         <div

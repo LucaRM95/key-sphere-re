@@ -1,9 +1,8 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { CarouselCustom } from "@/components";
 import prisma from "@/lib/prisma";
 import { PropertyDetails } from "@/properties";
 import { redirect } from "next/navigation";
+import { auth } from "@/auth.config";
 
 export default async function PropertyByIDPage({
   params,
@@ -13,7 +12,7 @@ export default async function PropertyByIDPage({
   const findedProperty: any = await prisma.property.findFirst({
     where: { id: params.id },
   });
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session) {
     redirect("/api/auth/signin");
   }
@@ -36,15 +35,15 @@ export default async function PropertyByIDPage({
         <div className="bg-ks-beige w-full py-3 mt-auto text-ks-dark p-5 lg:rounded-xl">
           <div className="flex justify-between">
             <div className="text-ks-dark">
-              <span className="text-ks-blue text-3xl font-bold">365k+</span>
+              <span className="text-ks-green text-3xl font-bold">365k+</span>
               <p>Reviews</p>
             </div>
             <div className="text-ks-dark">
-              <span className="text-ks-blue text-3xl font-bold">43k</span>
+              <span className="text-ks-green text-3xl font-bold">43k</span>
               <p>Projects</p>
             </div>
             <div className="text-ks-dark">
-              <span className="text-ks-blue text-3xl font-bold">97%</span>
+              <span className="text-ks-green text-3xl font-bold">97%</span>
               <p>Positive Rating</p>
             </div>
           </div>
