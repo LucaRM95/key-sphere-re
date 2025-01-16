@@ -1,7 +1,6 @@
 import { auth } from "@/auth.config";
 import { Topbar } from "@/properties";
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Key Sphere - Properties",

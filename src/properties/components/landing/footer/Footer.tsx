@@ -10,7 +10,7 @@ import { KsBeigeButton } from "@/components";
 export const Footer = () => {
   return (
     <footer className="grid grid-cols-3 gap-5 bg-ks-dark p-10 mt-[5rem] text-gray-500">
-      <div className="flex justify-between items-center col-span-3 mb-5">
+      <div className="flex flex-col gap-5 md:gap-0 md:flex-row md:justify-between md:items-center col-span-3 mb-5">
         <h5 className="font-bold text-xl text-ks-white">
           KSphere.{" "}
           <span className="text-xs font-semibold text-gray-500">

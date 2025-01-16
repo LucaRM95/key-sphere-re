@@ -64,7 +64,7 @@ export const PropertyCard = async ({ property }: Props) => {
             </span>
           </div>
         </div>
-        <div className="flex flex-wrap justify-start gap-5 m-3 text-ks-grey">
+        <div className="flex flex-wrap justify-start gap-5 md:gap-2 m-3 text-ks-grey">
           <div className="flex items-center gap-2">
             <FaHouse />
             <span>{property.type}</span>

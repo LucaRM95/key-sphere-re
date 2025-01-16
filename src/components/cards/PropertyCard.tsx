@@ -1,5 +1,4 @@
 interface Props {
-  key: string;
   image: string;
   title: string;
   price: number;
@@ -9,9 +8,9 @@ interface Props {
   location: string;
   className: string;}
 
-export const  PropertyCard = ({ key, image, title, price, beds, baths, size, location, className }: Props) => {
+export const  PropertyCard = ({ image, title, price, beds, baths, size, location, className }: Props) => {
     return (
-      <div key={key} className={`shadow rounded-xl overflow-hidden xl:w-80 bg-white ${className}`}>
+      <div className={`shadow rounded-xl overflow-hidden xl:w-80 bg-white ${className}`}>
         <div
           className="h-80 bg-cover bg-center"
           style={{ backgroundImage: `url(${image})` }}

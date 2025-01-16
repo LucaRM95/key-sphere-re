@@ -4,7 +4,7 @@ import { logout } from "@/auth";
 import { HorizontalSeparator, KeySphereButton } from "@/components";
 import { MenuItem } from "@/properties/interfaces/menuItem.interface";
 import { Session } from "next-auth";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -23,13 +23,9 @@ interface Props {
 
 export const MobileMenu = ({ menuItems, session }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const currentSession = useSession();
   const pathName = usePathname();
 
-  console.log(session)
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
- 
 
   return (
     <>

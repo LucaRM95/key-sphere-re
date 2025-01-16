@@ -24,7 +24,6 @@ export const login = async (email: any, password: any) => {
 
     return { status: 200 };
   } catch (error) {
-    console.log(error);
     return { status: 400, message: `${error}` };
   }
 };

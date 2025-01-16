@@ -13,7 +13,7 @@ import { usePropertiesForm } from "../hooks/usePropertiesForm";
 
 const options = [
   { value: "rent", title: "Rent" },
-  { value: "sell", title: "Sell" },
+  { value: "sale", title: "Sale" },
 ];
 
 const optionsActive = [

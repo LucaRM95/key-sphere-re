@@ -14,6 +14,8 @@ export { Highlights } from "./components/landing/highlights/Highlights";
 export { OurTeam } from "./components/landing/our-team/OurTeam";
 export { Footer } from "./components/landing/footer/Footer";
 
+export { PropertiesLayout } from "./components/layouts/PropertiesLayout";
+
 export { menuDesktopItems, menuMobileItems } from "./utils/menuItems";
 
 export * as PropertiesActions from "./actions/properties-actions";

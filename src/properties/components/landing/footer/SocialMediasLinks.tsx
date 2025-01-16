@@ -3,7 +3,7 @@ import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/f
 
 export const SocialMediasLinks = () => {
   return (
-    <div className="flex justify-between gap-5">
+    <div className="flex md:justify-between gap-5">
         <FaFacebook />
         <FaXTwitter />
         <FaLinkedinIn />
